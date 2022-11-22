@@ -2,49 +2,19 @@ import discord
 from discord import app_commands, Intents, ui, Interaction
 from discord.colour import Color
 from datetime import datetime
-<<<<<<< HEAD
-import os
-from dotenv import load_dotenv
 
-load_dotenv()  # Access the .env file
-TOKEN = os.getenv('TOKEN')  # Get the TOKEN variable from the .env file
-=======
-
->>>>>>> 0c09538 (Initial commit)
 
 guild_id = 847962669797474334
 
 
-<<<<<<< HEAD
-class Client(discord.Client):
-    def __init__(self):
-        super().__init__(intents=Intents.default())
-        self.synced = False  # So the bot doesn't sync commands more than once
-=======
 class client(discord.Client):
     def __init__(self):
         super().__init__(intents=Intents.default())
         self.synced = False  # So the bot doesnt sync commands more then once
->>>>>>> 0c09538 (Initial commit)
 
     async def on_ready(self):
         await self.wait_until_ready()
         if not self.synced:  # Check if commands have been synced
-<<<<<<< HEAD
-            await tree.sync(guild=discord.Object(id=guild_id))  # Guild specific, leave blank if global (global
-            # registration can take up to a day)
-            self.synced = True
-
-        tree.clear_commands(guild=discord.Object(id=guild_id))  # Clear all commands from the previous command tree
-        # to avoid issues
-        print(f"Successfully cleared commands.")
-        tree.add_command(command_list)
-        print(f"Successfully added commands.")
-
-
-# Initializing the client and command tree
-client = Client()
-=======
             await tree.sync(guild = discord.Object(id=guild_id))  # Guild specific, leave blank if global (global registration can take up to a day)
             self.synced = True
 
@@ -83,7 +53,6 @@ class mrz_modal(ui.Modal, title = "Test Modal"):
 
 # Initializing the client and command tree
 client = client()
->>>>>>> 0c09538 (Initial commit)
 tree = app_commands.CommandTree(client)
 
 
@@ -94,19 +63,6 @@ The follow commands are Test Commands
 
 # Fetch all the commands that exist in the bot's code
 @tree.command(
-<<<<<<< HEAD
-    guild=discord.Object(id=guild_id),
-    name='command-list',
-    description='This is a developer intended command, but feel free to try it out.',
-)
-async def command_list(interaction: discord.Interaction):
-    fetched = await tree.fetch_commands(
-        guild=discord.Object(id=guild_id))  # Fetch all the commands registered with the command tree
-    await interaction.response.send_message(fetched, ephemeral=True)
-
-
-client.run(TOKEN)  # Connect to the bot using Discord.api
-=======
     guild = discord.Object(id=guild_id), 
     name = 'command-list', 
     description='This is a developer intended command, but feel free to try it out.',
@@ -127,4 +83,3 @@ async def test_modal(interaction: discord.Interaction):
 
 
 client.run('MTAyOTkzNzkwNDcxMTExODg3OQ.GsEpyZ.UfHwfUNH2nuJasNL-ELzfY6ECYyWEvAs3XRoNk')
->>>>>>> 0c09538 (Initial commit)
