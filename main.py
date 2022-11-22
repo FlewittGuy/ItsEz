@@ -50,11 +50,13 @@ class MrzModal(ui.Modal, title="Test Modal"):
                                 )
 
     async def on_submit(self, interaction: Interaction):
+        # Generating the embed
         embed = discord.Embed(title=self.title, timestamp=datetime.now(), color=Color.from_rgb(47, 49, 54))
         embed.set_author(name=interaction.user, icon_url=interaction.user.avatar)
         embed.add_field(name=self.answer.label, value=self.answer, inline=False)
         embed.add_field(name=self.confirmation.label, value=self.confirmation, inline=False)
-        await interaction.response.send_message(embed=embed)
+
+        await interaction.response.send_message(embed=embed)  # Send the embed
 
 
 # Initializing the client and command tree
@@ -88,4 +90,4 @@ async def test_modal(interaction: discord.Interaction):
     await interaction.response.send_modal(MrzModal())
 
 
-client.run(TOKEN)
+client.run(TOKEN)  # Connect to the bot using Discord.api
