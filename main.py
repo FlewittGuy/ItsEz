@@ -2,7 +2,11 @@ import discord
 from discord import app_commands, Intents, ui, Interaction
 from discord.colour import Color
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
+load_dotenv()  # Access the .env file
+TOKEN = os.getenv('TOKEN')  # Get the TOKEN variable from the .env file
 
 guild_id = 847962669797474334
 
@@ -10,7 +14,7 @@ guild_id = 847962669797474334
 class client(discord.Client):
     def __init__(self):
         super().__init__(intents=Intents.default())
-        self.synced = False  # So the bot doesnt sync commands more then once
+        self.synced = False  # So the bot doesn't sync commands more than once
 
     async def on_ready(self):
         await self.wait_until_ready()
@@ -82,4 +86,4 @@ async def test_modal(interaction: discord.Interaction):
     await interaction.response.send_modal(mrz_modal())
 
 
-client.run('MTAyOTkzNzkwNDcxMTExODg3OQ.GsEpyZ.UfHwfUNH2nuJasNL-ELzfY6ECYyWEvAs3XRoNk')
+client.run(TOKEN)
