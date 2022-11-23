@@ -51,10 +51,5 @@ async def command_list(interaction: discord.Interaction):
         guild=discord.Object(id=guild_id))  # Fetch all the commands registered with the command tree
     await interaction.response.send_message(fetched, ephemeral=True)
 
-    try:
-        print(e)
-    except SyntaxError as err:
-        await interaction.response.send_message(err)
-
 
 client.run(TOKEN)  # Connect to the bot using Discord.api
