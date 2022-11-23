@@ -30,34 +30,6 @@ class Client(discord.Client):
         print(f"Successfully added commands.")
 
 
-"""
-Initializing the modals that will be used later in the commands
-"""
-
-
-class MrzModal(ui.Modal, title="Test Modal"):
-    answer = ui.TextInput(
-        label="Is MrZ cool?",
-        style=discord.TextStyle.short,
-        placeholder="Answer", required=True,
-        max_length=3
-    )
-    confirmation = ui.TextInput(label="Are you sure?",
-                                style=discord.TextStyle.short,
-                                placeholder="Answer", required=True,
-                                max_length=3
-                                )
-
-    async def on_submit(self, interaction: Interaction):
-        # Generating the embed
-        embed = discord.Embed(title=self.title, timestamp=datetime.now(), color=Color.from_rgb(47, 49, 54))
-        embed.set_author(name=interaction.user, icon_url=interaction.user.avatar)
-        embed.add_field(name=self.answer.label, value=self.answer, inline=False)
-        embed.add_field(name=self.confirmation.label, value=self.confirmation, inline=False)
-
-        await interaction.response.send_message(embed=embed)  # Send the embed
-
-
 # Initializing the client and command tree
 client = Client()
 tree = app_commands.CommandTree(client)
@@ -78,6 +50,11 @@ async def command_list(interaction: discord.Interaction):
     fetched = await tree.fetch_commands(
         guild=discord.Object(id=guild_id))  # Fetch all the commands registered with the command tree
     await interaction.response.send_message(fetched, ephemeral=True)
+
+    try:
+        print(e)
+    except SyntaxError as err:
+        await interaction.response.send_message(err)
 
 
 client.run(TOKEN)  # Connect to the bot using Discord.api
