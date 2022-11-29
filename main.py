@@ -1,7 +1,6 @@
 import discord, os, time
 from discord import app_commands, Intents, ui, Interaction
 from discord.colour import Color
-from datetime import datetime
 from dotenv import load_dotenv
 from dotez import load_ez, get_item
 
